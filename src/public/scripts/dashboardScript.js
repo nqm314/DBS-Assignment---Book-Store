@@ -1,3 +1,5 @@
+// Script for adminDashboard.html 
+
 const numCustomer = document.getElementById('num-customer')
 const numRevenue = document.getElementById('num-revenue')
 const numBook = document.getElementById('num-book')

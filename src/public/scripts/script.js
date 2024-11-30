@@ -1,3 +1,5 @@
+// Script for home.html 
+
 const search = document.getElementById('search-area');
 const form = document.getElementById('form');
 const bookList = document.getElementById('book-list');

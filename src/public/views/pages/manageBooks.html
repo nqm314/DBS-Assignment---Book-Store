@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Manage Books</title>
   <link href="../../styles/style.css" rel="stylesheet" type="text/css" />
   <script src="../../scripts/script.js" defer></script>
 </head>
@@ -19,7 +19,7 @@
       <a href="#">Giỏ hàng</a>
       <div class="menu-user">
         <img src="../../images/user-profile-icon-free-vector.jpg" alt="User Avatar">
-        <a href="customer.html">Người dùng</a>
+        <a href="customer.html">Quản lý</a>
       </div>
     </div>
   </div>
@@ -29,23 +29,23 @@
       <input type="search" id="search-area" name="q" placeholder="Search">
       <button><span>🔍</span></button>
     </form>
-    <!-- <div class="btn-add">
+    <div class="btn-add">
       <a href="/admin/add-book"><button class="btn-sty">Thêm sách</button></a>
-    </div> -->
+    </div>
   </div>
 
   <div class="book-list-container"  id="book-list"></div>
 
-  <!-- <div id="confirmation-box" class="hidden"> -->
-    <!-- <div class="confirmation-content"> -->
-      <!-- <p>Bạn có chắc chắn muốn xóa sách này?</p> -->
+  <div id="confirmation-box" class="hidden">
+    <div class="confirmation-content">
+      <p>Bạn có chắc chắn muốn xóa sách này?</p>
       <!-- <form id="delete-form" method="POST" action="/delete"> -->
       <!-- <input type="hidden" id="delete-book-id" name="book_id" /> -->
-      <!-- <button id="confirm-delete" class="confirm-btn">Xóa</button> -->
+      <button id="confirm-delete" class="confirm-btn">Xóa</button>
       <!-- </form> -->
-      <!-- <button id="cancel-delete" class="cancel-btn">Hủy</button> -->
-    <!-- </div> -->
-  <!-- </div> -->
+      <button id="cancel-delete" class="cancel-btn">Hủy</button>
+    </div>
+  </div>
 </body> 
 
 </html>

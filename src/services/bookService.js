@@ -18,7 +18,20 @@ const search = async (query) => {
     }
 }
 
+const getBookByID = async (bookID) => {
+    try {
+        const res = await db.execute(
+            "SELECT * FROM book WHERE book_id = ?", [bookID]
+        );
+        return res[0];
+    }
+    catch (error) {
+        throw error;
+    }
+};
+
 module.exports = {
     getAll,
     search,
+    getBookByID,
 }
