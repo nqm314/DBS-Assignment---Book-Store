@@ -27,6 +27,10 @@ route.get('/admin/add-book', (req, res) => {
     return res.sendFile(path.join(__dirname, "../public/views/pages/addBook.html"));
 })
 
+route.get('/admin/edit-book', (req, res) => {
+    return res.sendFile(path.join(__dirname, "../public/views/pages/editBook.html"));
+})
+
 route.get('/admin/manage-books', (req, res) => {
     return res.sendFile(path.join(__dirname, "../public/views/pages/manageBooks.html"));
 })

@@ -1,8 +1,15 @@
-// Script for home.html 
+// Script for home.html
 
 const search = document.getElementById('search-area');
 const form = document.getElementById('form');
 const bookList = document.getElementById('book-list');
+
+//Delete
+const confirmationBox = document.getElementById("confirmation-box");
+const confirmDelete = document.getElementById("confirm-delete");
+const cancelDelete = document.getElementById("cancel-delete");
+let bookToDeleteId = null; // Biến lưu trữ ID sách cần xóa
+let bookTitle = null;
 
 fetchBooks('http://localhost:3000/api/book/get-all');
 

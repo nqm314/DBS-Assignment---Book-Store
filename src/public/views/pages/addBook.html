@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Add Book</title>
   <link href="../../styles/style.css" rel="stylesheet" type="text/css" />
   <script src="../../scripts/addBookScript.js" defer></script>
 </head>
@@ -33,7 +33,7 @@
           Nhập thông tin sách cần thêm 
         </h2>
 
-        <form action="/create/store" class="form-book-content" method="POST">
+        <form action="/books/store" class="form-book-content" method="post">
           <!-- Announce error if exists -->
            <div class="announce-error" id="announce-error"></div>
            <label for="book-id" class="required">Nhập ID</label>
@@ -41,7 +41,7 @@
               type="text"
               name="book_id"
               id="book-id"
-              placeholder="Nhập id"
+              placeholder="Nhập ID"
               required
             />
 
@@ -57,9 +57,10 @@
             <label class="required" for="link-book-img">Link ảnh sách</label>
             <input
               type="text"
-              name="link-img"
+              name="link_img"
               id="link-book-img"
               placeholder="Nhập liên kết ảnh"
+              required
             />
 
             <label for="book-description">Mô tả:</label>
@@ -72,7 +73,7 @@
 
             <label for="book-chapters">Số chương:</label>
             <input
-              type="number"
+              type="text"
               name="volumn_number"
               id="book-chapters"
               placeholder="Nhập số chương"

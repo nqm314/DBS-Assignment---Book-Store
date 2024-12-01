@@ -8,7 +8,7 @@ if (typeof error !== 'undefined' && error) {
 }
 
 function closeModal() {
-    window.location.href = '/';
+    window.location.href = '/admin/manage-books';
 }
 
 function toggleSeriesInput() {

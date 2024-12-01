@@ -24,14 +24,20 @@ const searchBook = async (req, res) => {
 }
 
 const addBook = (req, res) => {
-    res.render('pages/addBook')
+    return res.sendFile(path.join(__dirname, "../public/views/pages/addBook.html"));
 }
 
 const getBookByID = async (req, res) => {
     const bookID = req.params.book_id;
+    console.log("bookController nha ", bookID);
     try {
         const book = await bookService.getBookByID(bookID);
-        return res.status(200).json(book);
+
+        if (!book) {
+            return res.status(404).json({ message: "Không tìm thấy sách." });
+        }
+
+        res.status(200).json(book);
     } catch (error) {
         console.error(error);
         return res.status(500).send("An error occurred while fetching the book.")
@@ -39,55 +45,43 @@ const getBookByID = async (req, res) => {
 }
 
 const storeBookToDB = async (req, res) => {
-    const {
-        book_id,
-        title,
-        link_img,
-        description,
-        volume_number,
-        book_type,
-        pub_id,
-        series_id
-    } = req.body; 
+    console.log('Body data: ', req.body);
+    const { book_id, title, link_img, description, volumn_number, book_type, pub_id, series_id } = req.body;
 
-    if (!book_id || !title || !link_img || !book_type || !pub_id) {
-        return res.render('pages/addBook', { error: "Thiếu thông tin cần thiết" });
-    }
-
-    const seriesIDValue = book_type === 'Sách tham khảo' || book_type === 'Tiểu thuyết' ? series_id : null;
-
+    // if (!book_id || !title || !link_img || !book_type || !pub_id) {
+    //     return res.status(400).send('Thiếu thông tin cần thiết!');
+    // }
+    if (!book_id) return res.status(400).send('Thieu book_id');
+    if (!title) return res.status(400).send("Thieu title");
+    if (!link_img) return res.status(400).send("Thieu link_img");
+    if (!book_type) return res.status(400).send("Thieu book_type");
+    if (!pub_id) return res.status(400).send("Thieu pub_id")
     try {
         const query = `
-        INSERT INTO book (book_id, title, link_image, volume_number, book_type, description, pub_id, series_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-        `
+        INSERT INTO book (BookID, Title, Image, VolumeNumber, BookType, Description, PubID, SeriesID) 
+        VALUES  (?, ?, ?, ?, ?, ?, ?, ?)
+        `;
         await db.query(query, [
             book_id,
             title,
             link_img,
-            volume_number,
+            volumn_number,
             book_type,
             description,
             pub_id,
-            seriesIDValue,
+            book_type === 'Sách tham khảo' || book_type === 'Tiểu thuyết' ? series_id : null,
         ]);
-        res.redirect('/')
-    }
-    catch (err) {
-        console.error('Lỗi khi thêm sách: ', err);
-        if (err.code === 'ER_DUP_ENTRY'){
-            return res.render('pages/addBook', { error: "BookID đã tồn tại"});
-        }
-        return res.render('pages/addBook', {
-            error: "Lỗi khi thêm sách vào cơ sở dữ liệu"
-        })
+        res.status(201).send('Thêm sách thành công!');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Lỗi khi thêm sách!');
     }
 }
 
 const deleteBook = async (req, res) => {
     const bookID = req.params.book_id;
     try {
-        const query = 'delete from book where book_id = ?'
+        const query = 'delete from book where BookID = ?'
         await db.query(query, [bookID], (err, result) => {
             if (err) {
                 console.log("Lỗi: ", err)
@@ -102,11 +96,46 @@ const deleteBook = async (req, res) => {
     }
 }
 
+const updateBook = async (req, res) => {
+    try {
+        const bookID = req.params.book_id;
+        const {
+            Title,
+            Image,
+            Description,
+            VolumeNumber,
+            BookType,
+            SeriesID,
+            PubID,
+          } = req.body; 
+
+        const result = await bookService.updateBookByID(bookID, {
+            Title,
+            Image,
+            Description,
+            VolumeNumber,
+            BookType,
+            SeriesID,
+            PubID,
+        });
+
+        if (result.affectedRows === 0) {
+            return res.status(404).send("Không tìm thấy sách với ID này.");
+        }
+
+        res.status(200).send("Cập nhật thông tin sách thành công.")
+    } catch (error) {
+        console.error("Lỗi khi cập nhật sách:", error);
+        res.status(500).send("Có lỗi xảy ra khi cập nhật sách.");
+    }
+};
+
 module.exports = {
     getAllBook,
     searchBook,
     addBook, 
     getBookByID,
     storeBookToDB,
-    deleteBook
+    deleteBook,
+    updateBook,
 }

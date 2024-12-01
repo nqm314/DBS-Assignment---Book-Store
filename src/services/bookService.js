@@ -18,20 +18,51 @@ const search = async (query) => {
     }
 }
 
-const getBookByID = async (bookID) => {
+const getBookByID = async (bookId) => {
     try {
-        const res = await db.execute(
-            "SELECT * FROM book WHERE book_id = ?", [bookID]
-        );
-        return res[0];
-    }
-    catch (error) {
-        throw error;
+      const result = await db.execute("SELECT * FROM book WHERE BookID = ?", [
+        bookId,
+      ]);
+      return result[0];
+    } catch (error) {
+      throw error;
     }
 };
+
+const updateBookByID = (bookId, updatedFields) => {
+    const q = `UPDATE book
+    SET 
+      Title = ?,
+      Image = ?,
+      Description = ?,
+      VolumeNumber = ?,
+      BookType = ?,
+      SeriesID = ?,
+      PubID = ?
+    WHERE BookID = ?`;
+
+    const values = [
+        updatedFields.Title,
+        updatedFields.Image,
+        updatedFields.Description,
+        updatedFields.VolumeNumber,
+        updatedFields.BookType,
+        updatedFields.SeriesID,
+        updatedFields.PubID,
+        bookId,
+    ];
+
+    return new Promise((resolve, reject) => {
+        db.query(q, values, (err, result) => {
+          if (err) return reject(err);
+          resolve(result);
+        });
+    });
+}
 
 module.exports = {
     getAll,
     search,
     getBookByID,
+    updateBookByID,
 }
