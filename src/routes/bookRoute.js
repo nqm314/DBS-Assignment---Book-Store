@@ -5,6 +5,5 @@ const path = require("path");
 // router.get("/create", createController.createBook);
 
 route.get("/", createController.addBook);
-route.post("/store", createController.storeBookToDB);
 
 module.exports = route;

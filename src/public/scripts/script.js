@@ -40,16 +40,20 @@ function displayBook(data) {
         const div_column = document.createElement('div');
         div_column.setAttribute('class', 'column');
 
-        const image = document.createElement('img');
-        image.setAttribute('class', 'poster');
-        image.src = `${book.Image}`;
+        // const image = document.createElement('img');
+        // image.setAttribute('class', 'poster');
+        // image.src = `${book.Image}`;
 
         const center = document.createElement('center');
+        const title = document.createElement('p')
         const type = document.createElement('p');
-        type.innerHTML = `<strong>Thể loại</strong>: ${book.BookType}`;
+        // const identifier = document.createElement('p');
+        title.innerHTML = `<strong>Tên sách</strong>: ${book.Title}`;
+        type.innerHTML = `<strong>Thể loại</strong>: ${book.Type}`;
 
-        center.appendChild(image);
+        // center.appendChild(image);
         bookDiv.appendChild(center);
+        bookDiv.appendChild(title);
         bookDiv.appendChild(type);
         div_column.appendChild(bookDiv);
         div_row.appendChild(div_column);

@@ -34,6 +34,43 @@
     </div>
   </div>
 
+  <div class="filter-container">
+    <form id="filterForm">
+      <div class="filter-group">
+        <label for="type">Thể loại:</label>
+        <select id="type" name="type">
+          <option value="">Tất cả</option>
+          <option value="novel">Tiểu thuyết</option>
+          <option value="reference">Sách tham khảo</option>
+          <option value="comic">Truyện tranh</option>
+          <option value="magazine">Tạp chí</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="priceRange">Giá:</label>
+        <select id="priceRange" name="priceRange">
+          <option value="">Tất cả</option>
+          <option value="low">Dưới 100,000đ</option>
+          <option value="medium">100,000đ - 500,000đ</option>
+          <option value="high">Trên 500,000đ</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="rating">Đánh giá:</label>
+        <select id="rating" name="rating">
+          <option value="">Tất cả</option>
+          <option value="5">5 sao</option>
+          <option value="4">4 sao trở lên</option>
+          <option value="3">3 sao trở lên</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button id="filter-button" class="btn-filter">Lọc</button>
+        <button id="reset-button" type="reset" class="btn-reset">Đặt lại</button>
+      </div>
+    </form>
+  </div>
+
   <div class="book-list-container"  id="book-list"></div>
 
   <div id="confirmation-delete-box" class="hidden">
@@ -55,6 +92,13 @@
       <button id="confirm-edit" class="confirm-btn">Sửa</button>
       <!-- </form> -->
       <button id="cancel-edit" class="cancel-btn">Hủy</button>
+    </div>
+  </div>
+
+  <div class="modal" id="response-modal">
+    <div class="response-modal-content">
+      <h2 id="response-message"></h2>
+      <button id="ok-btn">OK</button>
     </div>
   </div>
 </body> 

@@ -1,5 +1,7 @@
 // Script for editBook.html
-
+const responseModal = document.getElementById('response-modal');
+const responseMessage = document.getElementById('response-message');
+const okBtn = document.getElementById('ok-btn');
 const urlParams = new URLSearchParams(window.location.search);
 const bookId = urlParams.get("id")
 console.log("editBookScript nha ", bookId);
@@ -16,15 +18,15 @@ function fetchBookDetails() {
         const book = data[0];
         if (book) {
             console.log("Thong tin sach: ", book);
-            document.getElementById("book-id").value = book.bookId || "";
+            // document.getElementById("book-id").value = book.bookId || "";
             // document.getElementById("book-id").innerHTML = data.bookId || "";
             document.getElementById('book-title').value = book.Title || "";
-            document.getElementById('link-book-img').value = book.Image || "";
+            document.getElementById('book-description').value = book.Description || "";
+            // document.getElementById('link-book-img').value = book.Image || "";
             document.getElementById('book-chapters').value = book.VolumeNumber || "";         
             document.getElementById('book-type').value = book.BookType || "";
-            document.getElementById('book-description').value = book.Description || "";
-            document.getElementById('series').value = book.SeriesID || "";
-            document.getElementById('publisher').value = book.PubID || "";
+            document.getElementById('publisher').value = book.PublisherName || "";
+            document.getElementById('series').value = book.SeriesName || "";
         }
         else {
             alert("Khong tim thay thong tin sach")
@@ -41,12 +43,12 @@ document.getElementById('edit-book-form').addEventListener('submit', (e) => {
 
     const updatedBook = {
         Title: document.getElementById("book-title").value,
-        Image: document.getElementById("link-book-img").value,
+        // Image: document.getElementById("link-book-img").value,
         Description: document.getElementById("book-description").value,
         VolumeNumber: document.getElementById("book-chapters").value,
-        BookType: document.getElementById("book-type").value,
-        SeriesID: document.getElementById("series").value,
-        PubID: document.getElementById("publisher").value,
+        Type: document.getElementById("book-type").value,
+        PubName: document.getElementById("publisher").value,
+        SeriesName: document.getElementById("series").value,
     }
 
     fetch(`http://localhost:3000/api/book/${bookId}`, {
@@ -58,12 +60,23 @@ document.getElementById('edit-book-form').addEventListener('submit', (e) => {
     })
     .then((response) => response.json())
     .then((data) => {
-        alert('Sach da duoc cap nhat thanh cong!');
-        window.location.href = '/admin/manage-books';
+        console.log("Response data:", data);
+        console.log("Sach da duoc cap nhat thanh cong!!");
+        // alert('Sach da duoc cap nhat thanh cong!');
+        responseMessage.innerHTML = "Cập nhật sách thành công!";
+        responseModal.style.display = 'block';
+        okBtn.addEventListener('click', function() {
+            window.location.href = '/admin/manage-books';
+        });
     })
     .catch((error) => {
         console.error("Loi khi cap nhat sach: ", error);
-        alert("Co loi khi cap nhat sach.");
+        // alert("Co loi khi cap nhat sach.");
+        responseMessage.innerHTML = "Có lỗi xảy ra, vui lòng thử lại!";
+        responseModal.style.display = 'block';
+        okBtn.addEventListener('click', function() {
+            responseModal.style.display = 'none'; // Ẩn modal khi nhấn Ok
+        });
     })
 })
 

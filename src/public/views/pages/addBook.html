@@ -15,11 +15,11 @@
         <img src="../../images/bookstore logo.jpg" alt="Book Store Logo" class="book-store-logo">
     </div>
     <div class="menu">
-      <a href="#">Sách</a>
-      <a href="#">Giỏ hàng</a>
+      <a href="/admin/manage-books">Quản lý sách</a>
+      <a href="/admin/dashboard">Dashboard</a>
       <div class="menu-user">
         <img src="../../images/user-profile-icon-free-vector.jpg" alt="User Avatar">
-        <a href="customer.html">Quản lý</a>
+        <a href="/admin/info">Quản lý</a>
       </div>
     </div>
   </div>
@@ -33,17 +33,17 @@
           Nhập thông tin sách cần thêm 
         </h2>
 
-        <form action="/books/store" class="form-book-content" method="post">
+        <form action="/api/book/store" class="form-book-content" id="form-add-book-content" method="post">
           <!-- Announce error if exists -->
            <div class="announce-error" id="announce-error"></div>
-           <label for="book-id" class="required">Nhập ID</label>
+           <!-- <label for="book-id" class="required">Nhập ID</label>
            <input
               type="text"
               name="book_id"
               id="book-id"
               placeholder="Nhập ID"
               required
-            />
+            /> -->
 
            <label for="book-title" class="required">Tên sách</label>
            <input
@@ -54,14 +54,14 @@
               required
             />
 
-            <label class="required" for="link-book-img">Link ảnh sách</label>
+            <!-- <label class="required" for="link-book-img">Link ảnh sách</label>
             <input
               type="text"
               name="link_img"
               id="link-book-img"
               placeholder="Nhập liên kết ảnh"
               required
-            />
+            /> -->
 
             <label for="book-description">Mô tả:</label>
             <textarea
@@ -83,7 +83,6 @@
             <select
             id="book-type"
             name="book_type"
-            onchange="toggleSeriesInput()"
             required>
               <option value="">---Chọn loại sách---</option>
               <option>Truyện tranh</option>
@@ -91,25 +90,25 @@
               <option>Sách tham khảo</option>
               <option>Tạp chí</option>
             </select>
-             
-            <div id="series-container" style="display: none;">
-              <label for="series">Series:</label>
-              <input
-                type="text"
-                id="series"
-                name="series_id"
-                placeholder="Nhập series"
-              />
-            </div>
 
             <label class="required" for="publisher">Nhà xuất bản:</label>
             <input
               type="text"
-              name="pub_id"
+              name="publisher_name"
               id="publisher"
               placeholder="Nhập nhà xuất bản"
               required
             />
+             
+            <div for="series">
+              <label for="series">Series:</label>
+              <input
+                type="text"
+                id="series"
+                name="series_name"
+                placeholder="Nhập series"
+              />
+            </div>
 
             <div class="button-group">
               <button type="submit" class="add-book-btn">Thêm</button>
@@ -123,3 +122,11 @@
       </div>
      </div>
   </div>
+
+  <div class="modal" id="response-modal">
+    <div class="response-modal-content">
+      <h2 id="response-message"></h2>
+      <button id="ok-btn">OK</button>
+    </div>
+  </div>
+</body>
