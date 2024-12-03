@@ -14,7 +14,7 @@ let bookTitle = null;
 
 //Edit 
 const confirmEdit = document.getElementById("confirm-edit");
-const cancleEdit = document.getElementById("cancle-edit");
+const cancleEdit = document.getElementById("cancel-edit");
 let bookToEdit = null; // Biến lưu trữ ID sách cần edit
 
 // Filter 
@@ -154,7 +154,13 @@ function displayDetailBook(data) {
     bookList.innerHTML = ''; // Xóa sách hiện tại trước khi hiển thị sách mới
 
     if (data.length === 0) {
-        bookList.innerHTML = '<p>Không tìm thấy sách nào.</p>';
+        responseMessage.innerHTML = `Không tìm thấy sách nào!`;
+        responseModal.style.display = "block";
+  
+        // Đóng modal khi nhấn nút OK
+        okBtn.addEventListener("click", function () {
+          responseModal.style.display = "none";
+        });
         return;
     }
     

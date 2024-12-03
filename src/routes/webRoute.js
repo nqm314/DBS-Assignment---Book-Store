@@ -4,16 +4,12 @@ const path = require("path");
 const route = Router();
 
 route.get('/', (req, res) => {
-    return res.sendFile(path.join(__dirname, '../public/views/pages/home.html'));
+    return res.sendFile(path.join(__dirname, "../public/views/pages/login.html"));
 })
 
-route.get('/login', (req, res) => {
-    return res.sendFile(path.join(__dirname, "../public/views/pages/login.html"));
-});
-
-route.get('/info', (req, res) => {
-    return res.sendFile(path.join(__dirname, "../public/views/pages/customer.html"));
-});
+// route.get('/login', (req, res) => {
+//     return res.sendFile(path.join(__dirname, "../public/views/pages/login.html"));
+// });
 
 route.get('/admin/info', (req, res) => {
     return res.sendFile(path.join(__dirname, "../public/views/pages/admin.html"));

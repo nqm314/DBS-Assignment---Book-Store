@@ -28,4 +28,6 @@ route.get(
 // Dashboard route
 route.get('/dashboard', controllers.dashboardController.getDashboardData)
 
+route.post("/login", controllers.loginController.login);
+
 module.exports = route
