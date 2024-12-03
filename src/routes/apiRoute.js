@@ -14,7 +14,16 @@ route.put('/book/:book_id', controllers.bookController.updateBook);
 route.get('/filter-book', controllers.bookController.filterBooks);
 
 //Order route
-route.get('/order/get-all', controllers.orderController.getAllOrder)
+route.get("/order/get-all-order", controllers.orderController.getAllOrder);
+route.get("/order/:orderId", controllers.orderController.getOrderDetail);
+// route.get(
+//   "/order/check-order-total-price",
+//   controllers.orderController.getTotalPrice
+// );
+route.get(
+  "/filter-by-threshold",
+  controllers.orderController.getOrdersAboveThreshold
+);
 
 // Dashboard route
 route.get('/dashboard', controllers.dashboardController.getDashboardData)

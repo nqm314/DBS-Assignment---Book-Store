@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order</title>
+    <!-- tailwindcss -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="../../scripts/orderScript.js" defer></script>
+    <!-- <script src="../../scripts/priceFilter.js" defer></script> -->
+  </head>
+  <body class="">
+    <div class="container mx-auto p-6 shadow border">
+      <!-- Header -->
+      <header
+        class="flex items-center justify-between py-4 mb-6 bg-white shadow-md px-4 rounded-lg"
+      >
+        <div class="flex items-center space-x-4">
+          <img
+            src="../../images/bookstore logo.jpg"
+            alt="Bookstore Logo"
+            class="w-16 h-12 rounded"
+          />
+          <h1 class="text-2xl font-bold text-gray-800">Orders</h1>
+        </div>
+        <nav class="flex space-x-6">
+          <a href="/" class="text-gray-700 hover:text-blue-500">Home</a>
+          <a href="#" class="text-gray-700 hover:text-blue-500">Orders</a>
+          <a href="#" class="text-gray-700 hover:text-blue-500">Account</a>
+        </nav>
+      </header>
+
+      <!-- Total order price isAboveThresholding? -->
+
+      <div id="order-price-checker" class="mt-6">
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">
+          Filter Order by Threshold
+        </h3>
+        <div class="flex flex-col w-1/5 gap-4">
+          <input
+            id="threshold"
+            type="text"
+            class="mt-1 block p-2 border border-gray-300 rounded-lg"
+            placeholder="Enter Threshold Value"
+          />
+
+          <button
+            id="filter-button"
+            class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          >
+            Filter
+          </button>
+          <!-- <p id="check-result" class="mt-4 text-gray-700"></p> -->
+        </div>
+      </div>
+
+      <!-- Orders Section -->
+      <h2 class="flex text-2xl font-bold mt-10 mb-10">Order List</h2>
+      <div
+        id="orders-section"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        Order Section
+      </div>
+
+      <div
+        id="order-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      >
+        <div class="bg-white rounded-lg shadow-lg p-6 w-1/3 relative">
+          <div class="p-4 text-center"></div>
+          <div id="order-detail" class="text-gray-800"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

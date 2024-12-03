@@ -13,7 +13,7 @@ function fetchDashboardData() {
     .then(response => response.json())
     .then(data => {
         totalCustomers = data.numOfCustomers;
-        totalRevenue = data.totalRevenue;
+        totalRevenue = data.numOfOrders;
         totalBooks = data.numOfBooks;
         showDashboardData();
     })

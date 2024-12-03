@@ -3,11 +3,11 @@ const { dashboardService } = require('../services');
 const getDashboardData = async (req, res) => {
     try {
         const numOfCustomers = await dashboardService.getNumOfCustomers();
-        const totalRevenue = await dashboardService.getTotalRevenue();
+        const numOfOrders = await dashboardService.getNumOfOrders();
         const numOfBooks = await dashboardService.getNumOfBooks();
         return res.status(200).json({
             numOfCustomers,
-            totalRevenue,
+            numOfOrders,
             numOfBooks
         })
     } catch (error) {

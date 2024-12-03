@@ -35,6 +35,10 @@ route.get('/admin/manage-books', (req, res) => {
     return res.sendFile(path.join(__dirname, "../public/views/pages/manageBooks.html"));
 })
 
+route.get("/order", (req, res) => {
+    return res.sendFile(path.join(__dirname, "../public/views/pages/order.html"));
+});
+
 module.exports = route
 
 
