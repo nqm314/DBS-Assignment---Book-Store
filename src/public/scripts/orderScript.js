@@ -255,3 +255,28 @@ function fetchOrdersAboveThreshold() {
 document
   .getElementById("filter-button")
   .addEventListener("click", fetchOrdersAboveThreshold);
+
+async function fetchLogin(username, password) {
+  const errorMessage = document.getElementById("error-message");
+  alert(`Message: ${errorMessage}`);
+  try {
+    const response = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      displayLogin(data.staff);
+    } else {
+      errorMessage.textContent = data.error;
+      errorMessage.classList.remove("hidden");
+    }
+  } catch (error) {
+    errorMessage.textContent = "An unexpected error occurred.";
+    errorMessage.classList.remove("hidden");
+    console.error("Error logging in:", error);
+  }
+}

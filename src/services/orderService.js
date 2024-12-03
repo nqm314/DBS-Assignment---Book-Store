@@ -1,5 +1,4 @@
 const db = require("../config/db");
-
 const getAll = async () => {
   try {
     const result = await db.execute("SELECT * FROM `customerorder` LIMIT 10");
@@ -44,8 +43,8 @@ const getOrdersAboveThreshold = async (threshold) => {
     return orders;
   } catch (error) {
     if (error.sqlMessage) {
-        // Capture and throw the custom MySQL error message
-        throw new Error(error.sqlMessage);
+      // Capture and throw the custom MySQL error message
+      throw new Error(error.sqlMessage);
     }
     throw error; // Re-throw unexpected errors
   }
